@@ -1,0 +1,31 @@
+.products-box{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10rpx;
+ 
+   
+  
+}
+.products-item{
+  color: red;
+  display: flex;
+  flex-flow: column;
+  width: 360rpx;
+  height:360rpx;
+  background-color:lightgrey;
+  border-bottom: 8rpx solid #fff;
+}
+.products-image{
+width: 100%;
+height: 80%;
+margin-bottom: 4rpx;
+}
+.products-item-bottom{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin-bottom: 4rpx;
+}
