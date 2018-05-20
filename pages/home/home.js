@@ -51,7 +51,7 @@ Page({
    // 绑定跳转到商品详情页面
   onProductItemTap: function(event){
     var id=event.currentTarget.dataset.id;
-    
+   
     wx.navigateTo({
       url: '../product/product?id='+id
     });
@@ -62,9 +62,8 @@ onThemeItemTap: function(event){
   var name = event.currentTarget.dataset.name;
   
   var id = event.currentTarget.dataset.id;
-  console.log(id)
   wx.navigateTo({
-    url: '../theme/theme?id=' + id +'&name'+name
+    url: '../theme/theme?id=' + id +'&name='+name
   });
 },
 

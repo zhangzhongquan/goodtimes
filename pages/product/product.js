@@ -1,4 +1,5 @@
-// pages/product/product.js
+import { Product } from 'product-model.js';
+var product = new Product();
 Page({
 
   /**
@@ -13,16 +14,22 @@ Page({
    */
   onLoad: function (options) {
       var id=options.id;
+      this.data.id=id;
+     
+      this._loadData();
      
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
+  _loadData: function () {
+    //获取banner的响应数据
+    product.getDetailInfo(this.data.id,(res) => {
+    
+      this.setData({
+        "bannerInfo": res
+      });
+    });
+  }
   
 
 

@@ -5,7 +5,7 @@
   <view>
     <swiper indicator-dots="true" autoplay='true' class="swiper" indicator-active-color="white">
       <block wx:for="{{bannerArr}}">
-        <swiper-item class="banner-item" data-id="{{item.goodId}}" bindtap="onProductItemTap">
+        <swiper-item class="banner-item" data-id="{{item.id}}" bindtap="onProductItemTap">
           <image class="banner-image" src='{{item.imgUrl}}'>
           </image>
         </swiper-item>
@@ -22,7 +22,7 @@
       <view class="home-main-box">
         <block wx:for="{{themeArr}}">
 
-          <image class="theme-item" src="{{item.imgUrl}}" data-id="{{item.id}}" data-name="{{item.name}} " bindtap="onThemeItemTap"></image>
+          <image class="theme-item" src="{{item.imgUrl}}" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="onThemeItemTap"></image>
 
         </block>
       </view>

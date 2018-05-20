@@ -16,13 +16,19 @@ Page({
    */
   onLoad: function (options) {
     var id = options.id;
-    
     var name = options.name;
+    this.data.name = name;
     this.data.id = id;
+   
+   
     this._loadData()
   },
 
-
+  onReady: function () {
+    wx.setNavigationBarTitle({
+      title:this.data.name,
+    })
+  },
 // 获取theme详情页面
   _loadData:function(){
     theme.getThemeData(this.data.id,(res) => {
