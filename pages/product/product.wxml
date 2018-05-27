@@ -1,2 +1,72 @@
-<!--pages/product/product.wxml-->
-<text>pages/product/product.wxml</text>
+<view class='container'>
+  <!-- 商品详情页面的上半部分 -->
+  <view class='detail-header-box'>
+
+    <!-- 详情页右上角购物车图片 -->
+    <view class='fixed-btns-box'>
+      <view class='fiexd-cart'>
+        <image src="../../images/icon/cart@top.png"></image>
+      </view>
+    </view>
+
+    <!-- 商品详情主图 -->
+    <view class="detail-topic-img">
+      <image src="{{bannerInfo.imgUrl}}"></image>
+    </view>
+
+    <!-- 商品详情用户选择数据，和加入到购物车 -->
+    <view class="cart-box">
+      <view class="product-counts">
+        <picker range="{{countsArray}}" class="{{bannerInfo.stock==0?'disabled':''}}" bindchange='bindPickerChange'>
+          <view>
+            <text class='counts-tips'>数量</text>
+            <text class="counts-data">{{productCount}}</text>
+            <image class="counts-icon" src="../../images/icon/arrow@down.png"></image>
+          </view>
+        </picker>
+      </view>
+      <view class='middle-border'></view>
+      <view class="add-cart-btn  {{bannerInfo.stock==0?'disabled':''}} ">
+        <text>加入购物车</text>
+        <image class='cart-icon' src="../../images/icon/cart.png"></image>
+      </view>
+    </view>
+
+    <view class='basic-info-box'>
+      <view class='stock' wx:if="{{bannerInfo.stock>0}}">有货</view>
+      <view class='stock no' wx:else>缺货</view>
+      <view class="name">{{bannerInfo.name}}</view>
+      <view class='price'>{{bannerInfo.price}}</view>
+    </view>
+
+  </view>
+
+  <!-- 商品详情页面的下半部分 -->
+  <view class="detail-bottom-box">
+    <!-- 选项卡 -->
+    <view class='tabs-box'>
+      <block wx:for="{{tabsArray}}">
+        <view class="tabs-item  {{currentTabsIndex==index?'selected':''}}" bindtap='onTabsItemTap' data-index="{{index}}">{{item}}</view>
+      </block>
+    </view>
+    <!-- tab详细内容 -->
+    <view class="product-detail-box">
+      <view hidden="{{currentTabsIndex!=0}}">
+        <block wx:for="{{bannerInfo.detail}}">
+          <image src="{{item.detailUrl.img_url}}" mode="aspectFil"></image>
+        </block>
+      </view>
+      <view hidden="{{currentTabsIndex!=1}}">
+        <block wx:for="{{bannerInfo.param}}">
+            <view class='properties-item'>
+                <view class="properties-name">{{item.name}}</view>
+                <view class="properties-detail">{{item.detail}}</view>
+            </view>
+        </block>
+      </view>
+      <view hidden="{{currentTabsIndex!=2}}" class="product-detail-protect">
+      <view>七天无理由退换货</view>
+      </view>
+    </view>
+  </view>
+</view>
