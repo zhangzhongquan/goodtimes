@@ -22,13 +22,20 @@ Page({
    */
   onShow: function () {
     // cart页面需要绑定的数据进行绑定
-    var cartData = this.getCartDataFromLocal();
-    var countsInfo = this.getCartTotalCounts(true)
+    var cartData = cart.getCartDataFromLocal();
+    // var countsInfo = this.getCartTotalCounts(true)
+    var cal = this._calcTotalAccountAndCounts(cartData);
+
     this.setData({
-      selectedCounts: countsInfo,
+      account: cal.account,
+      selectedTypeCounts: cal.selectedTypeCounts,
+      selectedCounts: cal.selectedCounts,
       cartData:cartData
     })
   },
+
+
+
 // 计算商品的总价格，商品选中的总个数，商品种类的个数
 _calcTotalAccountAndCounts:function(data){
   var len=data.length,
@@ -36,21 +43,18 @@ _calcTotalAccountAndCounts:function(data){
       account=0,
       // 选中商品的总个数
       selectedCounts=0,
-
       // 选中商品种类的个数
       selectedTypeCounts=0;
-
   // multiple的作用是为了避免浮点数计算的时候出现误差
     let multiple=100;
-    for(let i=0;i<data.length;i++){
-      item=data[i];
-      if (item[i].selectstatus){
+    for(let i=0;i<len;i++){
+     
+      if (data[i].selectstatus){
         account += data[i].price * multiple * data[i].counts*multiple;
         selectedCounts+=data[i].counts;
         selectedTypeCounts++;
       }
     }
-    
     return {
       selectedTypeCounts: selectedTypeCounts,
       account: account / (multiple * multiple),
